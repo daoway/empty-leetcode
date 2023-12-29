@@ -1,0 +1,18 @@
+package com.blogspot.ostas.leetcode.all.hard.count_different_palindromic_subsequences;
+
+/*
+      730. count different palindromic subsequences
+
+https://leetcode.com/problems/count-different-palindromic-subsequences
+
+Given a string s, return the number of different non-empty palindromic subsequences in s. Since the answer may be very large, return it modulo 109 + 7.
+A subsequence of a string is obtained by deleting zero or more characters from the string.
+A sequence is palindromic if it is equal to the sequence reversed.
+Two sequences a1, a2, ... and b1, b2, ... are different if there is some i for which ai != bi.
+
+*/
+class Solution {
+  public int countPalindromicSubsequences(String s) {
+    return 0;
+  }
+}
