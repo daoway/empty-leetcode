@@ -1,0 +1,57 @@
+package com.blogspot.ostas.leetcode.all.medium.smallest_range_ii;
+
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+class SolutionTest {
+
+    /*
+      Example 1:
+    Input: nums = [1], k = 0
+    Output: 0
+    Explanation: The score is max(nums) - min(nums) = 1 - 1 = 0.
+    Example 2:
+    Input: nums = [0,10], k = 2
+    Output: 6
+    Explanation: Change nums to be [2, 8]. The score is max(nums) - min(nums) = 8 - 2 = 6.
+    Example 3:
+    Input: nums = [1,3,6], k = 3
+    Output: 3
+    Explanation: Change nums to be [4, 6, 3]. The score is max(nums) - min(nums) = 6 - 3 = 3.
+      Constraints:
+    1 <= nums.length <= 104
+    0 <= nums[i] <= 104
+    0 <= k <= 104
+    */
+    @Test
+    void example_0() {
+        var solution = new Solution();
+        int[] nums = new int[]{1};
+        int k = 0;
+        int expected = 0;
+        var result = solution.smallestRangeII(nums, k);
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void example_1() {
+        var solution = new Solution();
+        int[] nums = new int[]{0, 10};
+        int k = 2;
+        int expected = 6;
+        var result = solution.smallestRangeII(nums, k);
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void example_2() {
+        var solution = new Solution();
+        int[] nums = new int[]{1, 3, 6};
+        int k = 3;
+        int expected = 3;
+        var result = solution.smallestRangeII(nums, k);
+        assertThat(result).isEqualTo(expected);
+    }
+
+}

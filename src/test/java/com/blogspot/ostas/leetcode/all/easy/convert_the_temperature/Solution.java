@@ -1,0 +1,26 @@
+package com.blogspot.ostas.leetcode.all.easy.convert_the_temperature;
+
+/*
+      2469. convert the temperature
+
+https://leetcode.com/problems/convert-the-temperature
+
+You are given a non-negative floating point number rounded to two decimal places celsius, that denotes the temperature in Celsius.
+You should convert Celsius into Kelvin and Fahrenheit and return it as an array ans = [kelvin, fahrenheit].
+Return the array ans. Answers within 10-5 of the actual answer will be accepted.
+Note that:
+Kelvin = Celsius + 273.15
+Fahrenheit = Celsius * 1.80 + 32.00
+
+*/
+import java.math.BigDecimal;
+
+class Solution {
+  public double[] convertTemperature(double celsius) {
+    final double[] ans = new double[2];
+    ans[0]= BigDecimal.valueOf(celsius).add(BigDecimal.valueOf(273.15)).setScale(5, BigDecimal.ROUND_HALF_UP).doubleValue();
+    ans[1]= BigDecimal.valueOf(celsius).multiply(BigDecimal.valueOf(1.80)).add(BigDecimal.valueOf(32.00))
+        .setScale(5, BigDecimal.ROUND_HALF_UP).doubleValue();
+    return ans;
+  }
+}

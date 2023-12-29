@@ -1,0 +1,31 @@
+package com.blogspot.ostas.leetcode.all.medium.count_primes.v1;
+
+public class Solution {
+    public int countPrimes(int n) {
+        if (n <= 2) {
+            return 0; // No prime numbers less than 2
+        }
+
+        boolean[] isPrime = new boolean[n];
+        for (int i = 2; i < n; i++) {
+            isPrime[i] = true;
+        }
+
+        for (int i = 2; i * i < n; i++) {
+            if (isPrime[i]) {
+                for (int j = i * i; j < n; j += i) {
+                    isPrime[j] = false; // Mark multiples of i as non-prime
+                }
+            }
+        }
+
+        int count = 0;
+        for (int i = 2; i < n; i++) {
+            if (isPrime[i]) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+}
