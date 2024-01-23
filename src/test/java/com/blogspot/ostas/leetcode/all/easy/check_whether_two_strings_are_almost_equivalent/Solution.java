@@ -14,16 +14,17 @@ class Solution {
     public boolean checkAlmostEquivalent(String word1, String word2) {
         final int[] frequencyCharsOfWord1 = new int[26];
         final int[] frequencyCharsOfWord2 = new int[26];
-        var chars1 = word1.toCharArray();
-        var chars2 = word2.toCharArray();
+        final char[] chars1 = word1.toCharArray();
+        final char[] chars2 = word2.toCharArray();
         //by definition both word1 and and word 2 is same length
         if (chars1.length != chars2.length) return false;
         for (int i = 0; i < chars1.length; i++) {
             frequencyCharsOfWord1[chars1[i] - 'a']++;
             frequencyCharsOfWord2[chars2[i] - 'a']++;
         }
-        for (int i = 0; i < 26; i++) {
-            if (Math.abs(frequencyCharsOfWord1[i] - frequencyCharsOfWord2[i]) > 3) return false;
+        for (char letter = 'a'; letter <='z' ; letter++) {
+            int index = letter - 'a';
+            if (Math.abs(frequencyCharsOfWord1[index] - frequencyCharsOfWord2[index]) > 3) return false;
         }
         return true;
     }
