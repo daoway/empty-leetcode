@@ -71,4 +71,12 @@ class SolutionTest {
         var result = solution.countValidWords(sentence);
         assertThat(result).isEqualTo(expected);
     }
+    @Test
+    void example_5() {
+        var solution = new Solution();
+        String sentence = "-";
+        int expected = 0;
+        var result = solution.countValidWords(sentence);
+        assertThat(result).isEqualTo(expected);
+    }
 }

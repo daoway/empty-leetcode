@@ -38,6 +38,12 @@ class Solution {
                 return !s.startsWith("!");
             }
         });
+        validators.add(new Function<>() {
+            @Override
+            public Boolean apply(String s) {
+                return s.matches("[a-z]*(-?)[a-z]+[!.,]?$");
+            }
+        });
     }
 
     public int countValidWords(String sentence) {
