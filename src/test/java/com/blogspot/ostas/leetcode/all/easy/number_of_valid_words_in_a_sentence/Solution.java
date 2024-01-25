@@ -21,27 +21,23 @@ Given a string sentence, return the number of valid words in sentence.
 */
 class Solution {
     private static final List<Function<String, Boolean>> validators = new ArrayList<>();
-
+    private static List<String> valid = new ArrayList<>();
     static {
+//        validators.add(new Function<>() {
+//            @Override
+//            public Boolean apply(String s) {
+//                for (char ch : s.toCharArray()) {
+//                    if (Character.isDigit(ch)) return false;
+//                }
+//                return true;
+//            }
+//        });
         validators.add(new Function<>() {
             @Override
             public Boolean apply(String s) {
-                for (char ch : s.toCharArray()) {
-                    if (Character.isDigit(ch)) return false;
-                }
-                return true;
-            }
-        });
-        validators.add(new Function<>() {
-            @Override
-            public Boolean apply(String s) {
-                return !s.startsWith("!");
-            }
-        });
-        validators.add(new Function<>() {
-            @Override
-            public Boolean apply(String s) {
-                return s.matches("[a-z]*(-?)[a-z]+[!.,]?$");
+                boolean b = s.matches("^[a-z]*(-?)[a-z]+[!.,]?$") || s.equals("!") || s.equals(".") || s.equals(",");
+                if(b) valid.add(s);
+                return b;
             }
         });
     }
@@ -52,6 +48,7 @@ class Solution {
         for (final String word : words) {
             if (validateWord(word, validators)) countValid++;
         }
+        System.out.println();
         return countValid;
     }
 
