@@ -54,4 +54,21 @@ class SolutionTest {
         assertThat(result).isEqualTo(expected);
     }
 
+    @Test
+    void example_3() {
+        var solution = new Solution();
+        String sentence = " o6 t";
+        int expected = 1;
+        var result = solution.countValidWords(sentence);
+        assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    void example_4() {
+        var solution = new Solution();
+        String sentence = "he bought 2 pencils, 3 erasers, and 1  pencil-sharpener.";
+        int expected = 6;
+        var result = solution.countValidWords(sentence);
+        assertThat(result).isEqualTo(expected);
+    }
 }

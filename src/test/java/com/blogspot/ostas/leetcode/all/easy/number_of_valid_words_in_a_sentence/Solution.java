@@ -1,5 +1,10 @@
 package com.blogspot.ostas.leetcode.all.easy.number_of_valid_words_in_a_sentence;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
+
 /*
       2047. number of valid words in a sentence
 
@@ -15,7 +20,36 @@ Given a string sentence, return the number of valid words in sentence.
 
 */
 class Solution {
-  public int countValidWords(String sentence) {
-    return 0;
-  }
+    private static final List<Function<String, Boolean>> validators = new ArrayList<>();
+
+    static {
+        validators.add(new Function<>() {
+            @Override
+            public Boolean apply(String s) {
+                for (char ch : s.toCharArray()) {
+                    if (Character.isDigit(ch)) return false;
+                }
+                return true;
+            }
+        });
+        validators.add(new Function<>() {
+            @Override
+            public Boolean apply(String s) {
+                return !s.startsWith("!");
+            }
+        });
+    }
+
+    public int countValidWords(String sentence) {
+        int countValid = 0;
+        final String[] words = Arrays.stream(sentence.split("\\s+")).filter(el -> !el.isEmpty()).toArray(String[]::new);
+        for (final String word : words) {
+            if (validateWord(word, validators)) countValid++;
+        }
+        return countValid;
+    }
+
+    private boolean validateWord(String word, List<Function<String, Boolean>> validators) {
+        return validators.stream().allMatch(x -> x.apply(word));
+    }
 }
