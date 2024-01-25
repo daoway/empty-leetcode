@@ -20,39 +20,13 @@ Given a string sentence, return the number of valid words in sentence.
 
 */
 class Solution {
-    private static final List<Function<String, Boolean>> validators = new ArrayList<>();
-    private static List<String> valid = new ArrayList<>();
-    static {
-//        validators.add(new Function<>() {
-//            @Override
-//            public Boolean apply(String s) {
-//                for (char ch : s.toCharArray()) {
-//                    if (Character.isDigit(ch)) return false;
-//                }
-//                return true;
-//            }
-//        });
-        validators.add(new Function<>() {
-            @Override
-            public Boolean apply(String s) {
-                boolean b = s.matches("^[a-z]*(-?)[a-z]+[!.,]?$") || s.equals("!") || s.equals(".") || s.equals(",");
-                if(b) valid.add(s);
-                return b;
-            }
-        });
-    }
-
+    private static final String regex = "[a-z]*([a-z]-[a-z])?[a-z]*[!,.]?";
     public int countValidWords(String sentence) {
         int countValid = 0;
         final String[] words = Arrays.stream(sentence.split("\\s+")).filter(el -> !el.isEmpty()).toArray(String[]::new);
         for (final String word : words) {
-            if (validateWord(word, validators)) countValid++;
+            if (word.matches(regex)) countValid++;
         }
-        System.out.println();
         return countValid;
-    }
-
-    private boolean validateWord(String word, List<Function<String, Boolean>> validators) {
-        return validators.stream().allMatch(x -> x.apply(word));
     }
 }
