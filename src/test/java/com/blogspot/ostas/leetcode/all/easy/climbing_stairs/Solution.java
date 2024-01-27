@@ -10,23 +10,37 @@ Each time you can either climb 1 or 2 steps. In how many distinct ways can you c
 
 */
 class Solution {
-    public int climbStairsx(int n) {
+    public int climbStairsX(int n) {
         double sqrt5 = Math.sqrt(5);
         double result = Math.pow((1 + sqrt5) / 2, n + 1) - Math.pow((1 - sqrt5) / 2, n + 1);
         return (int) (result / sqrt5);
     }
 
 
-    public int climbStairs(int n) {
+    public int climbStairsXX(int n) {
         // let dp[i]  - the number of ways to climb to the i-th stair,
         // THEN dp[i] = dp[i-1] // one step + dp[i-2] //two steps
         int[] dp = new int[n + 1];
         dp[0] = 1;
         dp[1] = 1;
 
-        for (int i = 2; i <= n; i++){
+        for (int i = 2; i <= n; i++) {
             dp[i] = dp[i - 1] + dp[i - 2];
         }
         return dp[n];
+    }
+
+    public int climbStairs(int n) {
+        if (n <= 2) return n;
+        int oneStep = 1;
+        int twoStep = 2;
+        int dp = 0;
+        for (int i = 3; i <= n; i++) {
+            dp = oneStep + twoStep;
+            oneStep = twoStep;
+            twoStep = dp;
+        }
+
+        return dp;
     }
 }
