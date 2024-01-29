@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Solution {
-    public List<List<Integer>> generateSubsequences(int[] arr) {
+    private List<List<Integer>> generateSubsequences(int[] arr) {
         List<List<Integer>> allSubsequences = new ArrayList<>();
         generateSubsequencesHelper(arr, 0, new ArrayList<>(), allSubsequences);
         return allSubsequences;
