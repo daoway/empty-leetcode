@@ -25,7 +25,6 @@ public class Solution {
         generateSubsequencesHelper(arr, index + 1, current, allSubsequences);
 
         // Backtrack to exclude the current element for the next recursive call
-        //current.remove(current.size() - 1);
         current.removeLast();
     }
 
