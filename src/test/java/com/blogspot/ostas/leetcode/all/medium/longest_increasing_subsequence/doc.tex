@@ -1,23 +1,60 @@
-\documentclass{article}
-\usepackage[margin=1in]{geometry} % Adjust the margin as needed
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
 \usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+
+\definecolor{background}{RGB}{242, 242, 242}
+\definecolor{commentGreen}{RGB}{63, 127, 95}
+\definecolor{stringRed}{RGB}{152, 0, 0}
+\definecolor{keywordBlue}{RGB}{0, 0, 255}
+\definecolor{numberGray}{RGB}{128, 128, 128}
+
+\lstdefinestyle{intelliJStyle}{
+	language=Java,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\color{keywordBlue},
+	commentstyle=\color{commentGreen},
+	stringstyle=\color{stringRed},
+	numbers=left,
+	numberstyle=\tiny\color{numberGray},
+	stepnumber=1,
+	numbersep=5pt,
+	backgroundcolor=\color{background},
+	frame=single,
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=1,
+	showstringspaces=false,
+	moredelim=[is][\textcolor{keywordBlue}]{\%}{\%}
+}
+\lstset{style=intelliJStyle}
 
 \begin{document}
 
-    \title{Dynamic Programming for dummies}
+    \title{Longest Increasing Subsequence}
     \author{Stanislav Ostapenko}
     \date{\today}
     \maketitle
 
-    \section*{300. longest increasing subsequence}
+    \section*{DP solution}
     Let's define $L(i)$ as the length of the longest strictly increasing subsequence ending at index $i$.
     The recurrence formula for the longest strictly increasing subsequence is given by:
     \[ L(i) = 1 + \max_{\substack{j < i \\ \text{arr}[j] < \text{arr}[i]}} L(j) \]
 
 	This equation states that the length of the longest increasing subsequence ending at index i is 1 plus the maximum length obtained by considering all indices j less than i, where the corresponding element arr[j] is less than arr[i].
-	
-    \lstset{language=Java}
+\\
+
+\noindent
+Complexity :\\ 
+\\
+\noindent
+$T(n) = \mathcal{O}(n^{2})$
+\\
+$M(n) = \mathcal{O}(n)$
+
 \begin{lstlisting}
 class Solution {
 	private int max(int[] L) {
@@ -47,5 +84,51 @@ class Solution {
 	}
 }
 \end{lstlisting}
+
+\section*{Naive solution}
+\begin{lstlisting}    
+public class Solution {
+	private List<List<Integer>> generateSubsequences(int[] arr) {
+		List<List<Integer>> allSubsequences = new ArrayList<>();
+		generateSubsequencesHelper(arr, 0, new ArrayList<>(), allSubsequences);
+		return allSubsequences;
+	}
+	
+	private void generateSubsequencesHelper(int[] arr, int index, List<Integer> current, List<List<Integer>> allSubsequences) {
+		if (index == arr.length) {
+			// Base case: add the current subsequence to the result
+			allSubsequences.add(new ArrayList<>(current));
+			return;
+		}		
+		// Exclude the current element
+		generateSubsequencesHelper(arr, index + 1, current, allSubsequences);		
+		// Include the current element
+		current.add(arr[index]);
+		generateSubsequencesHelper(arr, index + 1, current, allSubsequences);		
+		// Backtrack to exclude the current element
+		current.removeLast();
+	}
+	
+	private boolean isStrictlyIncreasing(List<Integer> list) {
+		for (int i = 1; i < list.size(); i++) {
+			if (list.get(i) <= list.get(i - 1)) {
+				return false;
+			}
+		}
+		return true; // Strictly increasing
+	}
+	
+    public int lengthOfLIS(int[] nums) {
+    	List<List<Integer>> allSubsequences = generateSubsequences(nums);
+    	int max = 1;
+    	for (List<Integer> subsequence : allSubsequences) {
+    		if (isStrictlyIncreasing(subsequence)) {
+    			max = Math.max(max, subsequence.size());
+    		}
+    	}
+    	return max;
+    }
+}	
+\end{lstlisting}    
 
 \end{document}
