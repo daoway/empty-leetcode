@@ -1,6 +1,7 @@
 package com.blogspot.ostas.leetcode.all.medium.longest_increasing_subsequence.naive;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Solution {
@@ -40,10 +41,13 @@ public class Solution {
     public int lengthOfLIS(int[] nums) {
         List<List<Integer>> allSubsequences = generateSubsequences(nums);
         int max = 1;
-        for (List<Integer> subsequence : allSubsequences) {
+        Iterator<List<Integer>> iterator = allSubsequences.iterator();
+        while (iterator.hasNext()) {
+            List<Integer> subsequence = iterator.next();
             if (isStrictlyIncreasing(subsequence)) {
                 max = Math.max(max, subsequence.size());
             }
+            iterator.remove();//removing while iterating to save some memory, but it didn't help to fix memory constraint
         }
         return max;
     }
