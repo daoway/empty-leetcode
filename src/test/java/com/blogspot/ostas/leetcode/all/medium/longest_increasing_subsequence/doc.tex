@@ -74,8 +74,8 @@ class Solution {
 		// Iterate to fill in the values of L(i) using the recurrence relation
 		for (int i = 1; i < n; i++) {
 			for (int j = 0; j < i; j++) {
-				if (nums[i] > nums[j] && L[i] < L[j] + 1) {
-					L[i] = L[j] + 1;
+				if (nums[i] > nums[j]) {
+					L[i] = Math.max(L[i], L[j] + 1);
 				}
 			}
 		}
