@@ -1,26 +1,26 @@
 package com.blogspot.ostas.leetcode.all.medium.longest_increasing_subsequence.recursive;
 
 public class Solution {
-    private int max_ultimate;
+    private int maxUltimate;
 
-    public int lengthOfLisHelper(int[] arr, int n) {
+    public int lengthOfLISHelper(int[] arr, int n) {
         if (n == 1) {
             return 1;
         }
-        int curr_result;
-        int max_ending_here = 1;
+        int currResult;
+        int maxEndingHere = 1;
         for (int i = n - 1; i > 0; i--) {
-            curr_result = lengthOfLisHelper(arr, i);
-            if ((arr[i - 1] < arr[n - 1]) && (curr_result + 1 > max_ending_here)) {
-                max_ending_here = curr_result + 1;
+            currResult = lengthOfLISHelper(arr, i);
+            if ((arr[i - 1] < arr[n - 1]) && (currResult + 1 > maxEndingHere)) {
+                maxEndingHere = currResult + 1;
             }
         }
-        max_ultimate = Math.max(max_ending_here, max_ultimate);
-        return max_ending_here;
+        maxUltimate = Math.max(maxEndingHere, maxUltimate);
+        return maxEndingHere;
     }
 
     public int lengthOfLIS(int[] nums) {
-        lengthOfLisHelper(nums, nums.length);
-        return max_ultimate;
+        lengthOfLISHelper(nums, nums.length);
+        return maxUltimate;
     }
 }
