@@ -6,6 +6,9 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+//In the first test case, one can pick {6, 6}. In the second, we can pick {3,3,3}.
+
+
 class SolutionTest {
     @Test
     void test_0() {
