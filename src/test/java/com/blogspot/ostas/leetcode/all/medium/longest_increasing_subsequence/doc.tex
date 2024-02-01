@@ -4,6 +4,8 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath}
 \usepackage{xcolor}
+\usepackage[bookmarks]{hyperref}
+\usepackage{a4wide}
 
 % Set JetBrains Mono as the default monospaced font
 %% >choco install jetbrainsmono
@@ -32,8 +34,12 @@
     \date{\today}
     \maketitle
 
+\clearpage % or \newpage
+
 	\tableofcontents % Generate table of contents
 	\lstlistoflistings % Generate list of listings
+
+\clearpage % or \newpage
 
     \section{Bottom-up Dynamic Programming solution}
     Let's define $L(i)$ as the length of the longest strictly increasing subsequence ending at index $i$.
@@ -81,6 +87,7 @@ class Solution {
 }
     \end{lstlisting}
 
+\clearpage % or \newpage
     \section{Backtracking Algorithm}
     \begin{lstlisting}[caption=$\mathcal{O}(2^{n})$ Backtracking Algorithm]
 public class Solution {
@@ -127,6 +134,7 @@ public class Solution {
 }
     \end{lstlisting}
 
+\clearpage % or \newpage
     \section{DP with Binary Search}
     \begin{lstlisting}[caption=$\mathcal{O}(n\log_{}{n})$ DP with Binary Search]
 	import java.util.Arrays;
@@ -156,6 +164,7 @@ public class Solution {
 	}
     \end{lstlisting}
 
+\clearpage % or \newpage
 \section{Recursive Algorithm}
 \begin{lstlisting}[caption=$\mathcal{O}(2^{n})$ Recursive Algorithm]
 public class Solution {
