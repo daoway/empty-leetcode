@@ -34,13 +34,92 @@
     \date{\today}
     \maketitle
 
-\clearpage % or \newpage
+%%\clearpage % or \newpage
 
 	\tableofcontents % Generate table of contents
 	\lstlistoflistings % Generate list of listings
 
 \clearpage % or \newpage
+\section{Recursive Algorithm}
+\begin{lstlisting}[caption=$\mathcal{O}(2^{n})$ Recursive Algorithm]
+	public class Solution {
+		private int max;
+		public int lengthOfLISHelper(int[] arr, int n) {
+			// Base case: if there is only one element, the LIS length is 1
+			if (n == 1) {
+				return 1;
+			}
+			int currResult;
+			int maxEnding = 1;
+			
+			for (int i = n - 1; i > 0; i--) {
+				// Recursively calculate LIS for previous elements
+				currResult = lengthOfLISHelper(arr, i);
+				
+				// Check if the current element can be included in the increasing subsequence
+				if ((arr[i - 1] < arr[n - 1]) && (currResult + 1 > maxEnding)) {
+					maxEnding = currResult + 1;
+				}
+			}
+			max = Math.max(maxEnding, max);
+			return maxEnding;
+		}
+		
+		public int lengthOfLIS(int[] nums) {
+			lengthOfLISHelper(nums, nums.length);
+			return max;
+		}
+	}
+\end{lstlisting}
 
+\clearpage % or \newpage
+\section{Backtracking Algorithm}
+\begin{lstlisting}[caption=$\mathcal{O}(2^{n})$ Backtracking Algorithm]
+	public class Solution {
+		private List<List<Integer>> generateSubsequences(int[] arr) {
+			List<List<Integer>> allSubsequences = new ArrayList<>();
+			generateSubsequencesHelper(arr, 0, new ArrayList<>(), allSubsequences);
+			return allSubsequences;
+		}
+		
+		private void generateSubsequencesHelper(int[] arr, int index, List<Integer> current, List<List<Integer>> allSubsequences) {
+			if (index == arr.length) {
+				// Base case: add the current subsequence to the result
+				allSubsequences.add(new ArrayList<>(current));
+				return;
+			}		
+			// Exclude the current element
+			generateSubsequencesHelper(arr, index + 1, current, allSubsequences);		
+			// Include the current element
+			current.add(arr[index]);
+			generateSubsequencesHelper(arr, index + 1, current, allSubsequences);		
+			// Backtrack to exclude the current element
+			current.removeLast();
+		}
+		
+		private boolean isStrictlyIncreasing(List<Integer> list) {
+			for (int i = 1; i < list.size(); i++) {
+				if (list.get(i) <= list.get(i - 1)) {
+					return false;
+				}
+			}
+			return true; // Strictly increasing
+		}
+		
+		public int lengthOfLIS(int[] nums) {
+			List<List<Integer>> allSubsequences = generateSubsequences(nums);
+			int max = 1;
+			for (List<Integer> subsequence : allSubsequences) {
+				if (isStrictlyIncreasing(subsequence)) {
+					max = Math.max(max, subsequence.size());
+				}
+			}
+			return max;
+		}
+	}
+\end{lstlisting}
+
+\clearpage % or \newpage
     \section{Bottom-up Dynamic Programming solution}
     Let's define $L(i)$ as the length of the longest strictly increasing subsequence ending at index $i$.
     The recurrence formula for the longest strictly increasing subsequence is given by:
@@ -88,53 +167,6 @@ class Solution {
     \end{lstlisting}
 
 \clearpage % or \newpage
-    \section{Backtracking Algorithm}
-    \begin{lstlisting}[caption=$\mathcal{O}(2^{n})$ Backtracking Algorithm]
-public class Solution {
-	private List<List<Integer>> generateSubsequences(int[] arr) {
-		List<List<Integer>> allSubsequences = new ArrayList<>();
-		generateSubsequencesHelper(arr, 0, new ArrayList<>(), allSubsequences);
-		return allSubsequences;
-	}
-	
-	private void generateSubsequencesHelper(int[] arr, int index, List<Integer> current, List<List<Integer>> allSubsequences) {
-		if (index == arr.length) {
-			// Base case: add the current subsequence to the result
-			allSubsequences.add(new ArrayList<>(current));
-			return;
-		}		
-		// Exclude the current element
-		generateSubsequencesHelper(arr, index + 1, current, allSubsequences);		
-		// Include the current element
-		current.add(arr[index]);
-		generateSubsequencesHelper(arr, index + 1, current, allSubsequences);		
-		// Backtrack to exclude the current element
-		current.removeLast();
-	}
-	
-	private boolean isStrictlyIncreasing(List<Integer> list) {
-		for (int i = 1; i < list.size(); i++) {
-			if (list.get(i) <= list.get(i - 1)) {
-				return false;
-			}
-		}
-		return true; // Strictly increasing
-	}
-	
-    public int lengthOfLIS(int[] nums) {
-    	List<List<Integer>> allSubsequences = generateSubsequences(nums);
-    	int max = 1;
-    	for (List<Integer> subsequence : allSubsequences) {
-    		if (isStrictlyIncreasing(subsequence)) {
-    			max = Math.max(max, subsequence.size());
-    		}
-    	}
-    	return max;
-    }
-}
-    \end{lstlisting}
-
-\clearpage % or \newpage
     \section{DP with Binary Search}
     \begin{lstlisting}[caption=$\mathcal{O}(n\log_{}{n})$ DP with Binary Search]
 	import java.util.Arrays;
@@ -164,38 +196,6 @@ public class Solution {
 	}
     \end{lstlisting}
 
-\clearpage % or \newpage
-\section{Recursive Algorithm}
-\begin{lstlisting}[caption=$\mathcal{O}(2^{n})$ Recursive Algorithm]
-public class Solution {
-	private int max;
-	public int lengthOfLISHelper(int[] arr, int n) {
-		// Base case: if there is only one element, the LIS length is 1
-		if (n == 1) {
-			return 1;
-		}
-		int currResult;
-		int maxEnding = 1;
-		
-		for (int i = n - 1; i > 0; i--) {
-			// Recursively calculate LIS for previous elements
-			currResult = lengthOfLISHelper(arr, i);
-			
-			// Check if the current element can be included in the increasing subsequence
-			if ((arr[i - 1] < arr[n - 1]) && (currResult + 1 > maxEnding)) {
-				maxEnding = currResult + 1;
-			}
-		}
-		max = Math.max(maxEnding, max);
-		return maxEnding;
-	}
-	
-	public int lengthOfLIS(int[] nums) {
-		lengthOfLISHelper(nums, nums.length);
-		return max;
-	}
-}
-\end{lstlisting}
 
 %%\section{Recursive Algorithm}
 %%\begin{lstlisting}[caption=$\mathcal{O}(2^{n})$ Recursive Algorithm]
