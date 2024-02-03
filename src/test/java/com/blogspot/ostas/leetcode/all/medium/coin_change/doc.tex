@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{fontspec}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage[bookmarks]{hyperref}
+\usepackage{a4wide}
+
+% Set JetBrains Mono as the default monospaced font
+%% >choco install jetbrainsmono
+\setmonofont{JetBrainsMono-Regular}
+
+\lstdefinestyle{intelliJStyle}{
+    language=Java,
+    basicstyle=\ttfamily\small,
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    numbersep=5pt,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=1,
+    showstringspaces=false,
+    captionpos=b % Place the caption at the bottom
+}
+\lstset{style=intelliJStyle}
+
+\begin{document}
+
+    \title{Coin change}
+    \author{Stanislav Ostapenko}
+    \date{\today}
+    \maketitle
+
+%%\clearpage % or \newpage
+
+    \tableofcontents % Generate table of contents
+    \lstlistoflistings % Generate list of listings
+
+    \clearpage % or \newpage
+
+
+\section{Recursive Algorithm}
+\begin{lstlisting}[caption=$\mathcal{O}(2^{n})$ Recursive Algorithm]
+\end{lstlisting}
+
+\clearpage % or \newpage
+\section{Backtracking Algorithm}
+\begin{lstlisting}[caption=$\mathcal{O}(2^{n})$ Backtracking Algorithm]
+\end{lstlisting}
+
+\clearpage % or \newpage
+\section{Bottom-up Dynamic Programming solution}
+\begin{lstlisting}[caption=$\mathcal{O}(n^{2})$ DP solution]
+\end{lstlisting}
+
+\clearpage % or \newpage
+\section{DP with Binary Search}
+\begin{lstlisting}[caption=$\mathcal{O}(n\log_{}{n})$ DP with Binary Search]
+\end{lstlisting}
+
+
+%%\section{Recursive Algorithm}
+%%\begin{lstlisting}[caption=$\mathcal{O}(2^{n})$ Recursive Algorithm]
+%%\end{lstlisting}
+
+\end{document}
