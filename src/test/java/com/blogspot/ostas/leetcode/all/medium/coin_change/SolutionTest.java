@@ -52,4 +52,13 @@ class SolutionTest {
         assertThat(result).isEqualTo(expected);
     }
 
+    @Test
+    void example_3() {
+        var solution = new Solution();
+        int[] coins = new int[]{1, 2, 5, 10, 25, 50};
+        int amount = 100;
+        int expected = 2;
+        var result = solution.coinChange(coins, amount);
+        assertThat(result).isEqualTo(expected);
+    }
 }
