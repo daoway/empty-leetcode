@@ -7,6 +7,7 @@ public class CoinChangeProblem {
         System.out.println("total count : "+x);
     }
 
+    // T(n) = O(amount^coinCount)
     static int countWays(int amount) {
         int count = 0;
         for (int a = 0; a <= amount; a++) {
