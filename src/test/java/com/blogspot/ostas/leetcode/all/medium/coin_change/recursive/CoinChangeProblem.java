@@ -12,6 +12,7 @@ public class CoinChangeProblem {
     }
 
     // T(n) = O(amount^coinCount)
+    //naive solution with hardcoded coins
     static int countWays(int amount) {
         int count = 0;
         for (int a = 0; a <= amount; a++) {
@@ -33,7 +34,8 @@ public class CoinChangeProblem {
         return count;
     }
 
-    static int countWays(int amount, int[] coins) {
+    //added params coins[] but for loops is same as before
+    static int countWaysX(int amount, int[] coins) {
         int count = 0;
 
         for (int a = 0; a <= amount / coins[0]; a++) {
@@ -53,6 +55,30 @@ public class CoinChangeProblem {
         }
 
         return count;
+    }
+
+    static int countWays(int amount, int[] coins) {
+        int[] coinCount = new int[coins.length];
+        return countWaysHelper(amount, coins, coinCount, 0);
+    }
+
+    static int countWaysHelper(int remainingAmount, int[] coins, int[] coinCount, int index) {
+        if (remainingAmount == 0) {
+            return 1; // If remaining amount is 0, there is one way to make change, which is using no coins
+        }
+
+        if (remainingAmount < 0 || index == coins.length) {
+            return 0; // If remaining amount is negative or we've exhausted all coins, there's no way to make change
+        }
+
+        int ways = 0;
+        int maxCount = remainingAmount / coins[index];
+        for (int i = 0; i <= maxCount; i++) {
+            coinCount[index] = i;
+            ways += countWaysHelper(remainingAmount - i * coins[index], coins, coinCount, index + 1);
+            System.out.println(ways);
+        }
+        return ways;
     }
 
 }
