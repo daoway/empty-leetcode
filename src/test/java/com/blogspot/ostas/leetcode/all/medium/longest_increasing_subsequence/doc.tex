@@ -28,19 +28,48 @@
 \lstset{style=intelliJStyle}
 
 \begin{document}
+	\bibliographystyle{plain} % We choose the "plain" reference style
 
-    \title{Longest Increasing Subsequence}
+    \title{Dynamic Programming Wonderland}
     \author{Stanislav Ostapenko}
     \date{\today}
     \maketitle
 
-%%\clearpage % or \newpage
+	\begin{abstract}
+		Your abstract goes here.
+	\end{abstract}
+
+\clearpage
 
 	\tableofcontents % Generate table of contents
 	\lstlistoflistings % Generate list of listings
 
 \clearpage % or \newpage
-\section{Recursive Algorithm}
+
+\clearpage
+
+	\thispagestyle{empty}
+
+	\vspace*{\fill}
+	\begin{center}
+		\Huge
+		\begin{align*}
+			&   \mathcal{O}(1) &&= \mathcal{O}(\text{yeah})\\
+			&    \mathcal{O}(\log_{} n) &&= \mathcal{O}(\text{nice})\\
+			&    \mathcal{O}(n) &&= \mathcal{O}(\text{k})\\
+			&    \mathcal{O}(n^{2}) &&= \mathcal{O}(\text{my})\\
+			&    \mathcal{O}(2^{n}) &&= \mathcal{O}(\text{no})\\
+			&    \mathcal{O}(n!) &&= \mathcal{O}(\text{mg})\\
+			&    \mathcal{O}(n^{n}) &&= \mathcal{O}(\text{sh*t!})
+		\end{align*}
+	\end{center}
+	\vspace*{\fill}
+
+
+\clearpage % or \newpage
+\section{Longest Increasing Subsequence}
+
+\subsection{Recursive Algorithm}
 \begin{lstlisting}[caption=$\mathcal{O}(2^{n})$ Recursive Algorithm]
 	public class Solution {
 		private int max;
@@ -73,7 +102,7 @@
 \end{lstlisting}
 
 \clearpage % or \newpage
-\section{Backtracking Algorithm}
+\subsection{Backtracking Algorithm}
 \begin{lstlisting}[caption=$\mathcal{O}(2^{n})$ Backtracking Algorithm]
 	public class Solution {
 		private List<List<Integer>> generateSubsequences(int[] arr) {
@@ -120,7 +149,7 @@
 \end{lstlisting}
 
 \clearpage % or \newpage
-    \section{Bottom-up Dynamic Programming solution}
+    \subsection{Bottom-up Dynamic Programming solution}
     Let's define $L(i)$ as the length of the longest strictly increasing subsequence ending at index $i$.
     The recurrence formula for the longest strictly increasing subsequence is given by:
     \[ L(i) = 1 + \max_{\substack{j < i \\ \text{arr}[j] < \text{arr}[i]}} L(j) \]
@@ -167,7 +196,7 @@ class Solution {
     \end{lstlisting}
 
 \clearpage % or \newpage
-    \section{DP with Binary Search}
+    \subsection{DP with Binary Search}
     \begin{lstlisting}[caption=$\mathcal{O}(n\log_{}{n})$ DP with Binary Search]
 	import java.util.Arrays;
 
@@ -198,7 +227,29 @@ class Solution {
 
 
 %%\section{Recursive Algorithm}
+\section{Fibonacci numbers}
+
+\section{Climbing stairs}
+
+\section{Coins change}
+
+\section{Knapsack}
+
+\section{Longest Common Subsequence}
+
+\section{Shortest Graph Path}
+
 %%\begin{lstlisting}[caption=$\mathcal{O}(2^{n})$ Recursive Algorithm]
 %%\end{lstlisting}
+
+% References
+\begin{thebibliography}{9}
+\bibitem{example1}
+Author. (Year). Title. \textit{Journal}, Volume(Issue), Page numbers.
+
+\bibitem{example2}
+Another author. (Year). Title. \textit{Conference}, Location, Page numbers.
+
+\end{thebibliography}
 
 \end{document}
