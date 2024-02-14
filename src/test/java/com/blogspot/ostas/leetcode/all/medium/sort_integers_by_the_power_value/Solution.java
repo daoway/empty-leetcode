@@ -15,7 +15,20 @@ Notice that for any integer x (lo <= x <= hi) it is guaranteed that x will trans
 
 */
 class Solution {
-  public int getKth(int lo, int hi, int k) {
-    return 0;
-  }
+    int power(int x, int count) {
+        if (x == 1) {
+            return count;
+        }
+        if (x % 2 == 0) {
+            return power(x / 2, count + 1);
+        } else {
+            return power(3 * x + 1, count + 1);
+        }
+    }
+
+    public int getKth(int lo, int hi, int k) {
+        int x = power(3, 0);
+        System.out.println(x);
+        return 0;
+    }
 }
