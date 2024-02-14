@@ -48,4 +48,14 @@ class SolutionTest {
         assertThat(result).isEqualTo(expected);
     }
 
+    @Test
+    void example_2() {
+        var solution = new Solution();
+        int lo = 10;
+        int hi = 20;
+        int k = 5;
+        int expected = 13;
+        var result = solution.getKth(lo, hi, k);
+        assertThat(result).isEqualTo(expected);
+    }
 }

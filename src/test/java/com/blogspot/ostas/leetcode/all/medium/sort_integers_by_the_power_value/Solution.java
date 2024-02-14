@@ -1,5 +1,7 @@
 package com.blogspot.ostas.leetcode.all.medium.sort_integers_by_the_power_value;
 
+import java.util.PriorityQueue;
+
 /*
       1387. sort integers by the power value
 
@@ -15,7 +17,7 @@ Notice that for any integer x (lo <= x <= hi) it is guaranteed that x will trans
 
 */
 class Solution {
-    int power(int x, int count) {
+    private Integer power(int x, Integer count) {
         if (x == 1) {
             return count;
         }
@@ -27,8 +29,13 @@ class Solution {
     }
 
     public int getKth(int lo, int hi, int k) {
-        int x = power(3, 0);
-        System.out.println(x);
-        return 0;
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>((o1, o2) -> power(o1, 0).compareTo(power(o2, 0)));
+        for (int i = lo; i <= hi; i++) {
+            priorityQueue.add(power(i, 0));
+        }
+        for (int i = 0; i < k - 1; i++) {
+            priorityQueue.poll();
+        }
+        return priorityQueue.poll();
     }
 }
