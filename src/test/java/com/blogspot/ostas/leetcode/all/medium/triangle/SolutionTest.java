@@ -55,4 +55,17 @@ class SolutionTest {
         assertThat(result).isEqualTo(expected);
     }
 
+    @Test
+    void example_2() {
+        var solution = new Solution();
+        List<List<Integer>> triangle = List.of(
+                List.of(-1),
+                List.of(2, 3),
+                List.of(1, -1, -3)
+        );
+        int expected = -1;
+        var result = solution.minimumTotal(triangle);
+        assertThat(result).isEqualTo(expected);
+    }
+
 }

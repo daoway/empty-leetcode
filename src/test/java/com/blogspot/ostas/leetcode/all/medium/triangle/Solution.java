@@ -1,5 +1,6 @@
 package com.blogspot.ostas.leetcode.all.medium.triangle;
 
+import java.util.Comparator;
 import java.util.List;
 
 /*
@@ -12,7 +13,7 @@ For each step, you may move to an adjacent number of the row below. More formall
 
 */
 class Solution {
-  public int minimumTotal(List<List<Integer>> triangle) {
-    return 0;
-  }
+    public int minimumTotal(List<List<Integer>> triangle) {
+        return triangle.stream().map(row -> row.stream().min(Comparator.naturalOrder()).get()).mapToInt(Integer::intValue).sum();
+    }
 }
