@@ -1,6 +1,5 @@
 package com.blogspot.ostas.leetcode.all.medium.sort_integers_by_the_power_value;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /*
@@ -30,9 +29,15 @@ class Solution {
     }
 
     public int getKth(int lo, int hi, int k) {
-        final PriorityQueue<Pair> priorityQueue = new PriorityQueue<>(Comparator.comparing(o -> o.power));
+        final PriorityQueue<Pair> priorityQueue = new PriorityQueue<>((a, b) -> {
+            int compare = a.power.compareTo(b.power);
+            if (compare == 0) {
+                return a.val.compareTo(b.val);
+            }
+            return compare;
+        });
         for (int i = lo; i <= hi; i++) {
-            priorityQueue.add(Pair.of(i, power(i,0)));
+            priorityQueue.add(Pair.of(i, power(i, 0)));
         }
         for (int i = 0; i < k - 1; i++) {
             priorityQueue.poll();
@@ -42,8 +47,8 @@ class Solution {
     }
 
     static class Pair {
-        private int val;
-        private Integer power;
+        private final Integer val;
+        private final Integer power;
 
         private Pair(int val, Integer power) {
             this.val = val;
