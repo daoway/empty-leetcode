@@ -1,5 +1,6 @@
 package com.blogspot.ostas.leetcode.all.medium.sort_integers_by_the_power_value;
 
+import java.util.Map;
 import java.util.PriorityQueue;
 
 /*
@@ -17,6 +18,22 @@ Notice that for any integer x (lo <= x <= hi) it is guaranteed that x will trans
 
 */
 class Solution {
+    private Integer power(int x, Integer count, Map<Integer, Integer> cache) {
+        if (x == 1) {
+            return count;
+        }
+        if (!cache.containsKey(x)) {
+            if (x % 2 == 0) {
+                cache.put(x, power(x / 2, count + 1, cache));
+            } else {
+                cache.put(x, power(3 * x + 1, count + 1, cache));
+            }
+        }
+        return cache.get(x);
+    }
+
+    // pure recursive.Call - power(i,0);
+
     private Integer power(int x, Integer count) {
         if (x == 1) {
             return count;
@@ -28,6 +45,19 @@ class Solution {
         }
     }
 
+    private int power(int x) {
+        int count = 0;
+        while (x != 1) {
+            if (x % 2 == 0) {
+                x /= 2;
+            } else {
+                x = 3 * x + 1;
+            }
+            count++;
+        }
+        return count;
+    }
+
     public int getKth(int lo, int hi, int k) {
         final PriorityQueue<Pair> priorityQueue = new PriorityQueue<>((a, b) -> {
             int compare = a.power.compareTo(b.power);
@@ -37,7 +67,8 @@ class Solution {
             return compare;
         });
         for (int i = lo; i <= hi; i++) {
-            priorityQueue.add(Pair.of(i, power(i, 0)));
+            //priorityQueue.add(Pair.of(i, power(i, 0, new HashMap<>())));
+            priorityQueue.add(Pair.of(i, power(i)));
         }
         for (int i = 0; i < k - 1; i++) {
             priorityQueue.poll();
