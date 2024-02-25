@@ -27,6 +27,21 @@
 }
 \lstset{style=intelliJStyle}
 
+\lstdefinelanguage{Maple}{
+	sensitive=true,
+	morecomment=[l]{--},
+	morecomment=[s]{/*}{*/},
+	morestring=[b]",
+	morestring=[b]',
+	morekeywords={and,assuming,do,else,end,export,finally,for,if,implies,in,local,module,next,not,option,or,proc,quit,read,return,save,then,use,while},
+	morekeywords=[2]{array,begin,by,case,description,elif,except,fi,proc,od,otherwise,repeat,return,select,then,until,when,where},
+	morekeywords=[3]{diff,int,factor,integrate,limit,signum,sum},
+	alsoletter={\$},
+	literate=
+		{>}{{\textgreater}}1
+		{<}{{\textless}}1
+}
+
 \begin{document}
 	\bibliographystyle{plain} % We choose the "plain" reference style
 
@@ -228,6 +243,16 @@ class Solution {
 
 %%\section{Recursive Algorithm}
 \section{Fibonacci numbers}
+\subsection{Maple solution}
+\begin{lstlisting}[language=Maple]
+with(combinat, fibonacci);
+fibonacci_numbers := seq(fibonacci(i), i = 0 .. 100000);
+f := fopen("fibonacci_numbers.txt", WRITE);
+for num in fibonacci_numbers do
+		fprintf(f, "%a\n", num);
+end do;
+fclose(f);
+\end{lstlisting}
 
 \section{Climbing stairs}
 
