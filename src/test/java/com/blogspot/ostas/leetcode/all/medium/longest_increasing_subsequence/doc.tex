@@ -348,6 +348,62 @@ public static int fib4(int n) {
 }
 \end{lstlisting}
 
+\subsection{Using matrix calculus}
+\newpage
+\begin{lstlisting}[language=Java]
+// Method to raise a matrix to a power
+static long[][] matrixPower(long[][] matrix, int n) {
+	int row = matrix.length;
+	int col = matrix[0].length;
+	long[][] result = new long[row][col];
+
+	// Initialize result matrix as the identity matrix
+	for (int i = 0; i < row; i++) {
+		result[i][i] = 1;
+	}
+
+	// Multiply matrix by itself n times
+	while (n > 0) {
+		if (n % 2 == 1) {
+			result = matrixMultiply(result, matrix);
+		}
+		matrix = matrixMultiply(matrix, matrix);
+		n /= 2;
+	}
+
+	return result;
+}
+
+// Method to multiply two matrices
+static long[][] matrixMultiply(long[][] a, long[][] b) {
+	int rowA = a.length;
+	int colA = a[0].length;
+	int colB = b[0].length;
+	long[][] result = new long[rowA][colB];
+
+	for (int i = 0; i < rowA; i++) {
+		for (int j = 0; j < colB; j++) {
+			for (int k = 0; k < colA; k++) {
+				result[i][j] += a[i][k] * b[k][j];
+			}
+		}
+	}
+
+	return result;
+}
+
+// Method to calculate the nth Fibonacci number using matrix exponentiation
+static long fibonacci(int n) {
+	if (n <= 0)
+		return 0;
+
+	long[][] matrix = {{1, 1}, {1, 0}};
+	long[][] result = matrixPower(matrix, n - 1);
+	return result[0][0];
+}
+\end{lstlisting}
+
+
 \subsection{Maple solution}
 \begin{lstlisting}[language=Maple]
 with(combinat, fibonacci);
