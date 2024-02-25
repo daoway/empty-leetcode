@@ -243,6 +243,46 @@ class Solution {
 
 %%\section{Recursive Algorithm}
 \section{Fibonacci numbers}
+\subsection{Recursive solution}
+$T(n) = \mathcal{O}(2^{n})$ \\
+$M(n) = \mathcal{O}(2^{n})$ \\
+The space complexity is determined by the maximum depth of the recursive call stack.\\
+Since each function call adds a new frame to the call stack, and there are $2^n$ calls, the space complexity is also exponential.\\
+\begin{lstlisting}[language=Java]
+public static int fib0(int n) {
+	if (n == 0) return 0;
+	if (n == 1) return 1;
+	return fib0(n - 1) + fib0(n - 2);
+}
+\end{lstlisting}
+
+\subsection{Memoization : improved recursion}
+$T(n) = \mathcal{O}(n)$ \\
+$M(n) = \mathcal{O}(n)$ \\
+\newpage
+\begin{lstlisting}[float=h, language=Java]
+private static final Map<Integer, Integer> memo = new HashMap<>();
+public static int fib_memo(int n) {
+	// Base cases
+	if (n <= 1) {
+		return n;
+	}
+
+	// Check if the result for the given n is already in the memo map
+	if (memo.containsKey(n)) {
+		return memo.get(n);
+	}
+
+	// If not, calculate the Fibonacci number and store it in the memo map
+	int result = fib_memo(n - 1) + fib_memo(n - 2);
+
+	memo.put(n, result);
+
+	return result;
+}
+\end{lstlisting}
+
+
 \subsection{Maple solution}
 \begin{lstlisting}[language=Maple]
 with(combinat, fibonacci);
