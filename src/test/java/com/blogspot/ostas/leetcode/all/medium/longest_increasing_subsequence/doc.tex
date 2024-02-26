@@ -348,8 +348,8 @@ public static int fib4(int n) {
 }
 \end{lstlisting}
 
-\subsection{Using matrix calculus}
 \newpage
+\subsection{Using matrix calculus}
 \begin{lstlisting}[language=Java]
 // Method to raise a matrix to a power
 static long[][] matrixPower(long[][] matrix, int n) {
@@ -403,6 +403,49 @@ static long fibonacci(int n) {
 }
 \end{lstlisting}
 
+\newpage
+\subsection{Java Iterator<?> solution}
+\begin{lstlisting}[language=Java]
+class FibonacciIterator implements Iterator<BigInteger> {
+	private BigInteger a = BigInteger.ZERO;
+	private BigInteger b = BigInteger.ONE;
+
+	@Override
+	public boolean hasNext() {
+		return true; // Fibonacci sequence is infinite
+	}
+
+	@Override
+	public BigInteger next() {
+		BigInteger temp = a;
+		a = b;
+		b = temp.add(b);
+		return temp;
+	}
+}
+\end{lstlisting}
+
+\subsection{Max possible int sequence number without overflow}
+\begin{lstlisting}[language=Java]
+int maxFibonacciNumber() {
+	int prev = 0;
+	int curr = 1;
+	int index = 2; // Starting index for Fibonacci number 1
+
+	while (true) {
+		int next;
+			try {
+				next = Math.addExact(prev, curr); // Check for potential integer overflow
+			} catch (ArithmeticException e) {
+				break; // Exit the loop if overflow occurs
+			}
+		prev = curr;
+		curr = next;
+		index++;
+	}
+	return index;
+}
+\end{lstlisting}
 
 \subsection{Maple solution}
 \begin{lstlisting}[language=Maple]
