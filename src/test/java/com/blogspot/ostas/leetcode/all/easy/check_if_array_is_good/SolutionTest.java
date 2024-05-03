@@ -63,5 +63,12 @@ class SolutionTest {
         assertThat(result).isEqualTo(expected);
     }
 
-
+    @Test
+    void example_4() {
+        var solution = new Solution();
+        int[] nums = new int[]{9, 9};
+        boolean expected = false;
+        var result = solution.isGood(nums);
+        assertThat(result).isEqualTo(expected);
+    }
 }

@@ -1,5 +1,7 @@
 package com.blogspot.ostas.leetcode.all.easy.check_if_array_is_good;
 
+import java.util.Arrays;
+
 /*
       2784. check if array is good
 
@@ -12,7 +14,15 @@ Note: A permutation of integers represents an arrangement of these numbers.
 
 */
 class Solution {
-  public boolean isGood(int[] nums) {
-    return false;
-  }
+    public boolean isGood(int[] nums) {
+        if (nums.length == 0) return true;
+        if (nums.length == 1) return false;
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (nums[i + 1] - nums[i] != 1) {
+                return false;
+            }
+        }
+        return nums[nums.length - 1] == nums[nums.length - 2] && nums[nums.length - 1] == nums.length - 1;
+    }
 }
