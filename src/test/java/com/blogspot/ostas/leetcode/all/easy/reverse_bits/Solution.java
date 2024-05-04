@@ -13,6 +13,6 @@ In Java, the compiler represents the signed integers using 2's complement notati
 */
 class Solution {
   public int reverseBits(int n) {
-    return 0;
+    return Integer.reverse(n);
   }
 }
