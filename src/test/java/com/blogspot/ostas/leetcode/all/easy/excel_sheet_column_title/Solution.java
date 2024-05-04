@@ -18,18 +18,24 @@ AB -> 28
 
 */
 class Solution {
-  public String convertToTitle(int columnNumber) {
-    StringBuilder result = new StringBuilder();
-    while (columnNumber > 0) {
-      int remainder = columnNumber % 26;
-      if (remainder == 0) {
-        result.append('Z');
-        columnNumber = columnNumber / 26 - 1;
-      } else {
-        result.append((char) (remainder + 64)); // Convert remainder to ASCII code of corresponding letter
-        columnNumber /= 26;
-      }
+    private static final int start;
+
+    static {
+        start = 'A' - 1;
     }
-    return result.reverse().toString();
-  }
+
+    public String convertToTitle(int columnNumber) {
+        StringBuilder result = new StringBuilder();
+        while (columnNumber > 0) {
+            int remainder = columnNumber % 26;
+            if (remainder == 0) {
+                result.append('Z');
+                columnNumber = columnNumber / 26 - 1;
+            } else {
+                result.append(Character.toChars(remainder + start));
+                columnNumber /= 26;
+            }
+        }
+        return result.reverse().toString();
+    }
 }
