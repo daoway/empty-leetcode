@@ -1,5 +1,10 @@
 package com.blogspot.ostas.leetcode.all.easy.best_poker_hand;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /*
       2347. best poker hand
 
@@ -17,6 +22,17 @@ Note that the return values are case-sensitive.
 */
 class Solution {
   public String bestHand(int[] ranks, char[] suits) {
-    return null;
+    Set<Character> suitsSet = new HashSet<>();
+    for(char c : suits){
+      suitsSet.add(c);
+    }
+    if(suitsSet.size() == 1) return "Flush";
+    Map<Integer, Integer> ranksSet = new HashMap<>();
+    for (int rank : ranks) {
+      ranksSet.put(rank, ranksSet.getOrDefault(rank, 0) + 1);
+    }
+    if(ranksSet.size() == 2+1 || ranksSet.size() == 2) return "Three of a Kind";
+    if(ranksSet.size() == 4) return "Pair";
+    return "High Card";
   }
 }

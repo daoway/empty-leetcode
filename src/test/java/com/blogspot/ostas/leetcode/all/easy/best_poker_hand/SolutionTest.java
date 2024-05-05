@@ -58,4 +58,13 @@ class SolutionTest {
         assertThat(result).isEqualTo(expected);
     }
 
+    @Test
+    void example_3() {
+        var solution = new Solution();
+        int[] ranks = new int[]{2, 10, 7, 10, 7};
+        char[] suits = new char[]{'a', 'b', 'a', 'd', 'b'};
+        String expected = "Pair";
+        var result = solution.bestHand(ranks, suits);
+        assertThat(result).isEqualTo(expected);
+    }
 }
