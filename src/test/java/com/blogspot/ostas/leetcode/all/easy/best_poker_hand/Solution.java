@@ -1,6 +1,8 @@
 package com.blogspot.ostas.leetcode.all.easy.best_poker_hand;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
       2347. best poker hand
@@ -18,19 +20,20 @@ Note that the return values are case-sensitive.
 
 */
 class Solution {
-  public String bestHand(int[] ranks, char[] suits) {
-    Set<Character> suitsSet = new HashSet<>();
-    for(char c : suits){
-      suitsSet.add(c);
+    public String bestHand(int[] ranks, char[] suits) {
+        char suit = suits[0];
+        int ind = 1;
+        while (ind < suits.length && suits[ind] == suit) {
+            ind++;
+        }
+        if (ind == suits.length) return "Flush";
+        final Map<Integer, Integer> ranksSet = new HashMap<>();
+        for (final int rank : ranks) {
+            ranksSet.put(rank, ranksSet.getOrDefault(rank, 0) + 1);
+        }
+        int maxSameKind = ranksSet.values().stream().max(Comparator.naturalOrder()).get();
+        if (maxSameKind == 2) return "Pair";
+        if (maxSameKind >= 3) return "Three of a Kind";
+        return "High Card";
     }
-    if(suitsSet.size() == 1) return "Flush";
-    Map<Integer, Integer> ranksSet = new HashMap<>();
-    for (int rank : ranks) {
-      ranksSet.put(rank, ranksSet.getOrDefault(rank, 0) + 1);
-    }
-    int maxSameKind = ranksSet.values().stream().max(Comparator.naturalOrder()).get();
-    if(maxSameKind == 2) return "Pair";
-    if(maxSameKind >=3) return "Three of a Kind";
-    return "High Card";
-  }
 }
