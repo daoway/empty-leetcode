@@ -1,9 +1,6 @@
 package com.blogspot.ostas.leetcode.all.easy.best_poker_hand;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /*
       2347. best poker hand
@@ -31,8 +28,9 @@ class Solution {
     for (int rank : ranks) {
       ranksSet.put(rank, ranksSet.getOrDefault(rank, 0) + 1);
     }
-    if(ranksSet.size() == 2+1 || ranksSet.size() == 2) return "Three of a Kind";
-    if(ranksSet.size() == 4) return "Pair";
+    int maxSameKind = ranksSet.values().stream().max(Comparator.naturalOrder()).get();
+    if(maxSameKind == 2) return "Pair";
+    if(maxSameKind >=3) return "Three of a Kind";
     return "High Card";
   }
 }
