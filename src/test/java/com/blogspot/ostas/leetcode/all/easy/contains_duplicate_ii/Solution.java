@@ -14,24 +14,23 @@ Given an integer array nums and an integer k, return true if there are two disti
 
 */
 class Solution {
-  public boolean containsNearbyDuplicate(int[] nums, int k) {
-    Map<Integer, List<Integer>> map = new HashMap<>();
-    for (int i = 0; i < nums.length; i++) {
-      //map.computeIfAbsent(nums[i], map.getOrDefault(nums[i],0)+1 l -> new ArrayList<>()).add(i);
-      map.computeIfAbsent(nums[i], l -> new ArrayList<>()).add(i);
-    }
-    for (Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
-      if (entry.getValue().size() >=2){
-        Integer[] list = entry.getValue().toArray(Integer[]::new);
-        for(int i=0;i<list.length;i++){
-          for (int j = 0; j < list.length && j!=i; j++) {
-            if(Math.abs(list[i]-list[j])<=k){
-              return true;
-            }
-          }
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        Map<Integer, List<Integer>> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            map.computeIfAbsent(nums[i], l -> new ArrayList<>()).add(i);
         }
-      }
+        for (final Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
+            if (entry.getValue().size() >= 2) {
+                final var list = entry.getValue();
+                for (int i = 0; i < list.size(); i++) {
+                    for (int j = 0; j < list.size() && j != i; j++) {
+                        if (Math.abs(list.get(i) - list.get(j)) <= k) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
     }
-    return false;
-  }
 }
