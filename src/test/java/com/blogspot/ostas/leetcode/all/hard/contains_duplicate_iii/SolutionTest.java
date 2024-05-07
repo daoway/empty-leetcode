@@ -47,4 +47,14 @@ class SolutionTest {
         assertThat(result).isEqualTo(expected);
     }
 
+    @Test
+    void example_2() {
+        var solution = new Solution();
+        int[] nums = new int[]{8, 7, 15, 1, 6, 1, 9, 15};
+        int indexDiff = 1;
+        int valueDiff = 3;
+        boolean expected = true;
+        var result = solution.containsNearbyAlmostDuplicate(nums, indexDiff, valueDiff);
+        assertThat(result).isEqualTo(expected);
+    }
 }
