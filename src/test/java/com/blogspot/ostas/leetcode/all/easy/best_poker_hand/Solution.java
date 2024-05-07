@@ -1,6 +1,6 @@
 package com.blogspot.ostas.leetcode.all.easy.best_poker_hand;
 
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +31,7 @@ class Solution {
         for (final int rank : ranks) {
             ranksSet.put(rank, ranksSet.getOrDefault(rank, 0) + 1);
         }
-        int maxSameKind = ranksSet.values().stream().max(Comparator.naturalOrder()).get();
+        int maxSameKind = Collections.max(ranksSet.values());
         if (maxSameKind == 2) return "Pair";
         if (maxSameKind >= 3) return "Three of a Kind";
         return "High Card";
