@@ -1,5 +1,8 @@
 package com.blogspot.ostas.leetcode.all.easy.implement_stack_using_queues;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /*
       225. implement stack using queues
 
@@ -16,22 +19,57 @@ You must use only standard operations of a queue, which means that only push to 
 Depending on your language, the queue may not be supported natively. You may simulate a queue using a list or deque (double-ended queue) as long as you use only a queue's standard operations.
 
 */
+
 class MyStack {
-  public MyStack() {
-  }
+    private Queue<Integer> queue1;
+    private Queue<Integer> queue2;
+    private int top;
+    public MyStack() {
+        queue1 = new LinkedList<>();
+        queue2 = new LinkedList<>();
+    }
 
-  public void push(int x) {
-  }
+    /**
+     * Push element x onto stack.
+     */
+    public void push(int x) {
+        queue2.offer(x); // Add the new element to queue2
+        top = x; // Update the top element
 
-  public int pop() {
-    return 0;
-  }
+        // Move all elements from queue1 to queue2
+        while (!queue1.isEmpty()) {
+            queue2.offer(queue1.poll());
+        }
 
-  public int top() {
-    return 0;
-  }
+        // Swap queue1 and queue2
+        Queue<Integer> temp = queue1;
+        queue1 = queue2;
+        queue2 = temp;
+    }
 
-  public boolean empty() {
-    return false;
-  }
+    /**
+     * Removes the element on top of the stack and returns that element.
+     */
+    public int pop() {
+        int popped = queue1.poll();
+        if (!queue1.isEmpty()) {
+            top = queue1.peek();
+        }
+        return popped;
+    }
+
+    /**
+     * Get the top element.
+     */
+    public int top() {
+        return top;
+    }
+
+    /**
+     * Returns whether the stack is empty.
+     */
+    public boolean empty() {
+        return queue1.isEmpty();
+    }
 }
+
