@@ -2,7 +2,7 @@ package com.blogspot.ostas.leetcode.all.easy.implement_queue_using_stacks;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class MyQueueTest {
 
