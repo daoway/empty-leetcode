@@ -16,22 +16,45 @@ You must use only standard operations of a stack, which means only push to top, 
 Depending on your language, the stack may not be supported natively. You may simulate a stack using a list or deque (double-ended queue) as long as you use only a stack's standard operations.
 
 */
+import java.util.Stack;
+
 class MyQueue {
+  private Stack<Integer> stackPush;
+  private Stack<Integer> stackPop;
+
+  /** Initialize your data structure here. */
   public MyQueue() {
+    stackPush = new Stack<>();
+    stackPop = new Stack<>();
   }
 
+  /** Push element x to the back of queue. */
   public void push(int x) {
+    stackPush.push(x);
   }
 
+  /** Removes the element from in front of queue and returns that element. */
   public int pop() {
-    return 0;
+    if (stackPop.isEmpty()) {
+      while (!stackPush.isEmpty()) {
+        stackPop.push(stackPush.pop());
+      }
+    }
+    return stackPop.pop();
   }
 
+  /** Get the front element. */
   public int peek() {
-    return 0;
+    if (stackPop.isEmpty()) {
+      while (!stackPush.isEmpty()) {
+        stackPop.push(stackPush.pop());
+      }
+    }
+    return stackPop.peek();
   }
 
+  /** Returns whether the queue is empty. */
   public boolean empty() {
-    return false;
+    return stackPush.isEmpty() && stackPop.isEmpty();
   }
 }
