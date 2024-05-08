@@ -35,7 +35,7 @@ class Solution {
     return ranges;
   }
 
-  private void addRange(List<String> ranges, int start, int end) {
+  private static void addRange(List<String> ranges, int start, int end) {
     if (start == end) {
       ranges.add(String.valueOf(start));
     } else {
