@@ -13,10 +13,22 @@ int sumRange(int left, int right) Returns the sum of the elements of nums betwee
 
 */
 class NumArray {
-  public NumArray(int[] nums) {
-  }
+    private final int[] sums;
 
-  public int sumRange(int left, int right) {
-    return 0;
-  }
+    public NumArray(int[] nums) {
+        this.sums = new int[nums.length];
+        int sum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            sums[i] = sum;
+        }
+    }
+
+    public int sumRange(int left, int right) {
+        if (left == 0) {
+            return sums[right];
+        } else {
+            return sums[right] - sums[left - 1];
+        }
+    }
 }
