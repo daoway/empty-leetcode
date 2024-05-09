@@ -15,13 +15,31 @@ int sumRange(int left, int right) Returns the sum of the elements of nums betwee
 
 */
 class NumArray {
+  private final int[] sums;
+  private final int[] nums;
   public NumArray(int[] nums) {
+    this.nums = nums;
+    this.sums = new int[nums.length];
+    int sum = 0;
+    for (int i = 0; i < nums.length; i++) {
+      sum += nums[i];
+      sums[i] = sum;
+    }
   }
 
   public void update(int index, int val) {
+    int diff = val - nums[index];
+    nums[index] = val;
+    for (int k = index; k < sums.length; k++) {
+      sums[k] += diff;
+    }
   }
 
   public int sumRange(int left, int right) {
-    return 0;
+    if (left == 0) {
+      return sums[right];
+    } else {
+      return sums[right] - sums[left - 1];
+    }
   }
 }
