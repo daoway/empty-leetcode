@@ -14,6 +14,9 @@ void update(int index, int val) Updates the value of nums[index] to be val.
 int sumRange(int left, int right) Returns the sum of the elements of nums between indices left and right inclusive (i.e. nums[left] + nums[left + 1] + ... + nums[right]).
 
 */
+ /////////////////////////////////////
+//        Time Limit Exceeded
+//////////////////////////////////////
 class NumArray {
   private final int[] sums;
   private final int[] nums;
