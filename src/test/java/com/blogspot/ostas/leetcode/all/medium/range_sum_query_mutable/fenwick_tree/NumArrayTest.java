@@ -1,4 +1,4 @@
-package com.blogspot.ostas.leetcode.all.medium.range_sum_query_mutable.fenwick;
+package com.blogspot.ostas.leetcode.all.medium.range_sum_query_mutable.fenwick_tree;
 
 import org.junit.jupiter.api.Test;
 

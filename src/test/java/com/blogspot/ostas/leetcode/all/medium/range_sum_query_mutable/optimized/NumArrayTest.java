@@ -1,6 +1,5 @@
 package com.blogspot.ostas.leetcode.all.medium.range_sum_query_mutable.optimized;
 
-import com.blogspot.ostas.leetcode.all.medium.range_sum_query_mutable.fenwick.NumArray;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
