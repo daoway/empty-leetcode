@@ -1,5 +1,14 @@
 package com.blogspot.ostas.leetcode.all.medium.range_sum_query_mutable.optimized;
 
+/*
+
+    Time Limit Exceeded
+
+    16 / 16 testcases passed
+
+    Testcases passed, but took too long.
+
+ */
 class NumArray {
     private final int[] sums;
 
