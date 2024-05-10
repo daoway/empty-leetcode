@@ -1,4 +1,4 @@
-package com.blogspot.ostas.leetcode.all.medium.range_sum_query_mutable.optimized;
+package com.blogspot.ostas.leetcode.all.medium.range_sum_query_mutable.naive;
 
 import org.junit.jupiter.api.Test;
 
