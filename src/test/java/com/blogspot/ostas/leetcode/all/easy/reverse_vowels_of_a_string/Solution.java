@@ -15,28 +15,16 @@ The vowels are 'a', 'e', 'i', 'o', and 'u', and they can appear in both lower an
 
 */
 class Solution {
-  class Letter{
-    public char letter;
-    public int index;
-    public boolean isVowel;
-    public Letter(char letter, int index, boolean isVowel) {
-      this.letter = letter;
-      this.index = index;
-      this.isVowel = isVowel;
-    }
-  }
   public String reverseVowels(String s) {
-    StringBuilder result = new StringBuilder(s);
-    List<Letter> letters = new ArrayList<>();
-    List<Integer> vowelIndexes = new ArrayList<>();
+    final StringBuilder result = new StringBuilder(s);
+    final List<Integer> vowelIndexes = new ArrayList<>();
     for (int i = 0; i < s.length(); i++) {
-      char c = s.charAt(i);
-      boolean vowel = isVowel(c);
-      letters.add(new Letter(c,i, vowel));
+      boolean vowel = isVowel(s.charAt(i));
       if(vowel) {
         vowelIndexes.add(i);
       }
     }
+
     List<Integer> reverseVowelIndexes = vowelIndexes.reversed();
     Map<Integer, Integer> indexMap = new HashMap<>();
     for (int i=0;i<vowelIndexes.size();i++) {
