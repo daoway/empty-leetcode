@@ -27,10 +27,6 @@ class Solution {
     }
 
     private boolean isVowel(char c) {
-        return "aeiouAEIOU".indexOf(c) != -1;
+        return c == 'a' || c == 'e' ||  c == 'i' || c == 'o' || c == 'u' || c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U';
     }
-
-//    private boolean isVowel(char c) {
-//        return c == 'a' || c == 'e' ||  c == 'i' || c == 'o' || c == 'u' || c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U';
-//    }
 }
