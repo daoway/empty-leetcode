@@ -9,8 +9,22 @@ Given two strings ransomNote and magazine, return true if ransomNote can be cons
 Each letter in magazine can only be used once in ransomNote.
 
 */
+import java.util.HashMap;
+import java.util.Map;
+
 class Solution {
   public boolean canConstruct(String ransomNote, String magazine) {
-    return false;
+    final Map<Character, Integer> magazineMap = new HashMap<>();
+    for (final char c : magazine.toCharArray()) {
+      magazineMap.put(c, magazineMap.getOrDefault(c, 0) + 1);
+    }
+
+    for (final char c : ransomNote.toCharArray()) {
+      if (!magazineMap.containsKey(c) || magazineMap.get(c) <= 0) {
+        return false;
+      }
+      magazineMap.put(c, magazineMap.get(c) - 1);
+    }
+    return true;
   }
 }
