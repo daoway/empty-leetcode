@@ -15,10 +15,11 @@ class Solution {
         }
 
         List<Integer> list = new ArrayList<>();
+        int a,b,c;
         for (int i = 100; i < 1000; i += 2) {
-            int a = i % 10;
-            int b = (i / 10) % 10;
-            int c = i / 100;
+            a = i % 10;
+            b = (i / 10) % 10;
+            c = i / 100;
 
             count[a]--;
             count[b]--;
@@ -31,6 +32,12 @@ class Solution {
             count[b]++;
             count[c]++;
         }
+
+//        int [] res = new int[list.size()];
+//        for(int i = 0; i < res.length; i++){
+//            res[i] = list.get(i);
+//        }
+//        return res;
 
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
