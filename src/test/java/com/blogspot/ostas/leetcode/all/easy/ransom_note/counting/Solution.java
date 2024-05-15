@@ -4,21 +4,14 @@ class Solution {
     public boolean canConstruct(String ransomNote, String magazine) {
         int[] counts = new int[26]; // Assuming only lowercase English letters
 
-        // count occurrences of characters in magazine
-        for (char c : magazine.toCharArray()) {
+        for (final char c : magazine.toCharArray()) {
             counts[c - 'a']++;
         }
 
         // subtract occurrences of characters in ransomNote
-        for (char c : ransomNote.toCharArray()) {
+        for (final char c : ransomNote.toCharArray()) {
             counts[c - 'a']--;
-        }
-
-        // check if any count is negative, indicating not enough characters in magazine
-        for (int count : counts) {
-            if (count < 0) {
-                return false;
-            }
+            if (counts[c - 'a'] < 0) return false;
         }
 
         return true;
