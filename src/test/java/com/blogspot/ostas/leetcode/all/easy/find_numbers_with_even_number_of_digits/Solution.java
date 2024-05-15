@@ -9,7 +9,18 @@ Given an array nums of integers, return how many of them contain an even number 
 
 */
 class Solution {
-  public int findNumbers(int[] nums) {
-    return 0;
-  }
+    public int findNumbers(int[] nums) {
+        int result = 0;
+        for (int num : nums) {
+            int count = 0;
+            while (num > 0) {
+                count++;
+                num /= 10;
+            }
+            if (count % 2 == 0) {
+                result++;
+            }
+        }
+        return result;
+    }
 }
