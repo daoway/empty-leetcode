@@ -12,7 +12,7 @@ class Solution {
 
         List<Integer> result = new ArrayList<>();
 
-        for (int i = 100; i <= 999; i+=2) {
+        for (int i = 100; i <= 999; i += 2) {
             int num = i;
             int[] digitFreq = new int[10];
             while (num > 0) {
