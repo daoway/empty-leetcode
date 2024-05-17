@@ -17,9 +17,9 @@ class Solution {
         }
 
         // Optionally restore the original values (if needed)
-        for (int i = 0; i < nums.length; i++) {
-            nums[i] = Math.abs(nums[i]);
-        }
+        //        for (int i = 0; i < nums.length; i++) {
+        //            nums[i] = Math.abs(nums[i]);
+        //        }
 
         return result;
     }
