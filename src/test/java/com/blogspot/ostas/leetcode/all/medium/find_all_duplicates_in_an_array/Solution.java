@@ -1,5 +1,6 @@
 package com.blogspot.ostas.leetcode.all.medium.find_all_duplicates_in_an_array;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -13,6 +14,16 @@ You must write an algorithm that runs in O(n) time and uses only constant extra 
 */
 class Solution {
   public List<Integer> findDuplicates(int[] nums) {
-    return null;
+    int[] freq = new int[nums.length + 1];
+    for (final int num : nums) {
+      freq[num]++;
+    }
+    List<Integer> result = new ArrayList<>();
+    for (int num = 1; num <= nums.length; num++) {
+      if (freq[num] == 2) {
+        result.add(num);
+      }
+    }
+    return result;
   }
 }
