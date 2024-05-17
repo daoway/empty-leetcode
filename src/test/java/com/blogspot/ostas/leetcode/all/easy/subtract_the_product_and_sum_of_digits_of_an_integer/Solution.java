@@ -9,7 +9,14 @@ Given an integer number n, return the difference between the product of its digi
 
 */
 class Solution {
-  public int subtractProductAndSum(int n) {
-    return 0;
-  }
+    public int subtractProductAndSum(int n) {
+        int sum = 0, product = 1;
+        while (n > 0) {
+            int num = n % 10;
+            sum += num;
+            product *= num;
+            n /= 10;
+        }
+        return product - sum;
+    }
 }
