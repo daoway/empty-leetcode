@@ -11,7 +11,23 @@ Return the letter that was added to t.
 
 */
 class Solution {
-  public char findTheDifference(String s, String t) {
-    return ' ';
-  }
+    public char findTheDifference(String s, String t) {
+        if(s.isEmpty() || t.isEmpty()) return t.charAt(0);
+        char[] charsS = s.toCharArray();
+        char[] charsT = t.toCharArray();
+        int[] freqS = new int[26];
+        int[] freqT = new int[26];
+        for (char c : charsS) {
+            freqS[c - 'a']++;
+        }
+        for (char c : charsT) {
+            freqT[c - 'a']++;
+        }
+        for (int i = 0; i < 26; i++) {
+            if (freqS[i] != freqT[i]) {
+                return charsT[i];
+            }
+        }
+        return ' ';
+    }
 }
