@@ -1,5 +1,6 @@
 package com.blogspot.ostas.leetcode.all.easy.find_the_peaks;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -14,8 +15,15 @@ A peak is defined as an element that is strictly greater than its neighboring el
 The first and last elements of the array are not a peak.
 
 */
+
 class Solution {
-  public List<Integer> findPeaks(int[] mountain) {
-    return null;
-  }
+    public List<Integer> findPeaks(int[] mountain) {
+        List<Integer> result = new ArrayList<>();
+        for (int i = 1; i < mountain.length - 1; i++) {
+            if (mountain[i] > mountain[i - 1] && mountain[i] > mountain[i + 1]) {
+                result.add(i);
+            }
+        }
+        return result;
+    }
 }
