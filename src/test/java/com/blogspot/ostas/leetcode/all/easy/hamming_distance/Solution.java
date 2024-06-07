@@ -23,4 +23,9 @@ class Solution {
 
         return distance;
     }
+
+    public int hammingDistanceX(int x, int y) {
+        // XOR the two numbers to get a binary number where each bit is set to 1 if the corresponding bits of x and y are different
+        return (int) Integer.toBinaryString(x ^ y).chars().filter(c -> c == '1').count();
+    }
 }
