@@ -11,21 +11,16 @@ Given two integers x and y, return the Hamming distance between them.
 */
 class Solution {
     public int hammingDistance(int x, int y) {
-        var binStringX = Integer.toBinaryString(x);
-        var binStringY = Integer.toBinaryString(y);
+        // XOR the two numbers to get a binary number where each bit is set to 1 if the corresponding bits of x and y are different
+        int xor = x ^ y;
 
-        // Pad the shorter binary string with leading zeros
-        int maxLength = Math.max(binStringX.length(), binStringY.length());
-        binStringX = String.format("%" + maxLength + "s", binStringX).replace(' ', '0');
-        binStringY = String.format("%" + maxLength + "s", binStringY).replace(' ', '0');
-
-        int mid = Math.min(binStringX.length(), binStringY.length());
+        // Count the number of 1s in the binary representation of xor (which is the Hamming distance)
         int distance = 0;
-        for (int i = 0; i < mid; i++) {
-            if (binStringX.charAt(i) != binStringY.charAt(i)) {
-                distance++;
-            }
+        while (xor != 0) {
+            distance += xor & 1;
+            xor >>= 1;
         }
+
         return distance;
     }
 }
