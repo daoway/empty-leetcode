@@ -1,7 +1,5 @@
 package com.blogspot.ostas.leetcode.all.easy.backspace_string_compare;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /*
       844. backspace string compare
@@ -12,18 +10,22 @@ Given two strings s and t, return true if they are equal when both are typed int
 Note that after backspacing an empty text, the text will continue empty.
 
 */
+
+import java.util.Stack;
+
 class Solution {
     private static String applyBackspaceToString(String s) {
-        List<Integer> removeIndex = new ArrayList<>();
-        StringBuilder result = new StringBuilder(s);
-        char[] chars = s.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            if (chars[i] == '#') {
-                removeIndex.add(i-1);
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (c != '#') {
+                stack.push(c);
+            } else if (!stack.isEmpty()) {
+                stack.pop();
             }
         }
-        for (var index : removeIndex) {
-            result.deleteCharAt(index);
+        StringBuilder result = new StringBuilder();
+        for (char c : stack) {
+            result.append(c);
         }
         return result.toString();
     }
