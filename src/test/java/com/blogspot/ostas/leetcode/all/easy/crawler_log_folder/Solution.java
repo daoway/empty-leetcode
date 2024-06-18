@@ -1,5 +1,7 @@
 package com.blogspot.ostas.leetcode.all.easy.crawler_log_folder;
 
+import java.util.Stack;
+
 /*
       1598. crawler log folder
 
@@ -16,7 +18,20 @@ Return the minimum number of operations needed to go back to the main folder aft
 
 */
 class Solution {
-  public int minOperations(String[] logs) {
-    return 0;
-  }
+    public int minOperations(String[] logs) {
+        Stack<String> stack = new Stack<>();
+        for (String log : logs) {
+            if (log.equals("./")) {
+                continue;
+            }
+            if (log.equals("../")) {
+                if (!stack.isEmpty()) {
+                    stack.pop();
+                }
+            } else {
+                stack.push(log);
+            }
+        }
+        return stack.size();
+    }
 }

@@ -1,4 +1,4 @@
-package com.blogspot.ostas.leetcode.all.easy.backspace_string_compare;
+package com.blogspot.ostas.leetcode.all.easy.backspace_string_compare.two_pointers;
 
 
 /*
