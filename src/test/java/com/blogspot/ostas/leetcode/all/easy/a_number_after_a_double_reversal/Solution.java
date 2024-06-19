@@ -12,6 +12,6 @@ Given an integer num, reverse num to get reversed1, then reverse reversed1 to ge
 */
 class Solution {
   public boolean isSameAfterReversals(int num) {
-    return false;
+    return num == 0 || num % 10 != 0;
   }
 }
