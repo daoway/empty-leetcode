@@ -1,7 +1,5 @@
 package com.blogspot.ostas.leetcode.all.easy.account_balance_after_rounded_purchase;
 
-import java.math.BigDecimal;
-
 /*
       2806. account balance after rounded purchase
 
