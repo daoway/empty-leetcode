@@ -1,5 +1,7 @@
 package com.blogspot.ostas.leetcode.all.easy.account_balance_after_rounded_purchase;
 
+import java.math.BigDecimal;
+
 /*
       2806. account balance after rounded purchase
 
@@ -15,6 +17,6 @@ Note: 0 is considered to be a multiple of 10 in this problem.
 */
 class Solution {
   public int accountBalanceAfterPurchase(int purchaseAmount) {
-    return 0;
+    return 100 - (int) (Math.round(purchaseAmount/10.0) * 10);
   }
 }
