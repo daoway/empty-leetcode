@@ -1,5 +1,8 @@
 package com.blogspot.ostas.leetcode.all.easy.alternating_digit_sum;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
       2544. alternating digit sum
 
@@ -15,17 +18,22 @@ class Solution {
     public int alternateDigitSum(int n) {
         int makeNegative = 1;
         int sum = 0;
+        List<Integer> digits = new ArrayList<>();
         while (n > 0) {
             int digit = n % 10;
             n = n / 10;
-            sum += (digit * makeNegative);
+            digits.add(digit);
+        }
+
+        for (int i = digits.size() - 1; i >= 0; i--) {
+            sum += (digits.get(i) * makeNegative);
             if (makeNegative == 1) {
                 makeNegative = -1;
             } else {
                 makeNegative = 1;
             }
-        }
 
+        }
         return sum;
     }
 }
