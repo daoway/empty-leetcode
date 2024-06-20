@@ -48,5 +48,13 @@ class SolutionTest {
         var result = solution.alternateDigitSum(n);
         assertThat(result).isEqualTo(expected);
     }
+    @Test
+    void example_3() {
+        var solution = new Solution();
+        int n = 4321;
+        int expected = 2;
+        var result = solution.alternateDigitSum(n);
+        assertThat(result).isEqualTo(expected);
+    }
 
 }
