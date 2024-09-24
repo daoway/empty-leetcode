@@ -9,8 +9,20 @@ You are given an integer array nums. You are initially positioned at the array's
 Return true if you can reach the last index, or false otherwise.
 
 */
+// greegy approach
+
 class Solution {
   public boolean canJump(int[] nums) {
+    int farthest = 0;
+    for (int i = 0; i < nums.length; i++) {
+      if (i > farthest) {
+        return false;
+      }
+      farthest = Math.max(farthest, i + nums[i]);
+      if (farthest >= nums.length - 1) {
+        return true;
+      }
+    }
     return false;
   }
 }
