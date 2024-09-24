@@ -10,6 +10,7 @@ Return true if you can reach the last index, or false otherwise.
 
 */
 
+// RECURSIVE - Time Limit Exceeded
 
 class Solution {
   public boolean canJump(int[] nums) {
