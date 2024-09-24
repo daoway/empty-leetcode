@@ -10,6 +10,6 @@ Given a positive integer n, return the smallest positive integer that is a multi
 */
 class Solution {
   public int smallestEvenMultiple(int n) {
-    return 0;
+    return n * (n % 2 + 1);
   }
 }
