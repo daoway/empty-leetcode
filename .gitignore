@@ -11,3 +11,5 @@
 /src/test/java/com/blogspot/ostas/leetcode/all/medium/longest_increasing_subsequence/doc.out
 /src/test/java/com/blogspot/ostas/leetcode/all/medium/longest_increasing_subsequence/doc.bbl
 /src/test/java/com/blogspot/ostas/leetcode/all/medium/longest_increasing_subsequence/doc.blg
+
+*.iml
